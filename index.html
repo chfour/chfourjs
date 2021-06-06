@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="ch4.js"></script>
+    <title>ch4.js demo page</title>
+</head>
+<body>
+    <button id="testbutton">click me</button>
+    <script>
+        const b = new CHElement(document.querySelector("#testbutton"));
+        b.on("click", () => alert("clicked"));
+    </script>
+</body>
+</html>
