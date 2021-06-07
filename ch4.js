@@ -91,13 +91,13 @@ class CHElement {
      * the element's `innerHTML`
      * @returns {String} the HTML string
      */
-     get html() { return this.e.innerHTML; }
+    get html() { return this.e.innerHTML; }
 
-     /**
-      * the element's `innerHTML`
-      * @param {String} text the HTML string
-      */
-     set html(text) { this.e.innerHTML = text; }
+    /**
+     * the element's `innerHTML`
+     * @param {String} text the HTML string
+     */
+    set html(text) { this.e.innerHTML = text; }
 }
 
 /**
