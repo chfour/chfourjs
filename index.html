@@ -4,14 +4,82 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+
+    <style>
+        body {
+            background-color: #1d1d1d;
+            color: white;
+            font-family: "Fira Sans", Arial, Helvetica, sans-serif;
+        }
+        h2::before {
+            content: "* ";
+            font-size: 0.8em;
+            color: rgb(189, 184, 255);
+        }
+        #examples {
+            width: max-content;
+        }
+        .cont {
+            border: 1px dashed #474747;
+            padding: 0.5em;
+        }
+        .cont > h3 {
+            margin-block-start: 0;
+        }
+    </style>
+
     <script src="ch4.js"></script>
+    <script>
+    $4(() => {
+        // wack
+        $4(".example").forEach(e => {
+            const codeRaw = e.find(".result").html;
+            if (!codeRaw) return;
+            const code = codeRaw.trim().split("\n").map(a => a.trim()).join("\n");
+            e.find("code").text = code;
+        });
+        hljs.highlightAll();
+    })
+    </script>
     <title>ch4.js demo page</title>
 </head>
 <body>
-    <button id="testbutton">click me</button>
-    <script>
-        const b = new CHElement(document.querySelector("#testbutton"));
-        b.on("click", () => alert("clicked"));
-    </script>
+    <noscript>hey there! you need javascript to view this page!</noscript>
+
+    <h1>ch4.js - another "joke" js framework</h1>
+    <p><del>you don't want to</del> don't use this in any production code.</p>
+
+    <hr>
+
+    <div id="examples">
+        <h2>features demo</h2>
+
+        <div class="cont example">
+            <h3>attaching event listeners to elements</h3>
+            <pre><code class="language-html">loading example</code></pre>
+
+            <p>result:</p>
+            <div class="result">
+                <button id="testbutton">click me</button>
+                <script>
+                    const b = $4("#testbutton");
+                    b.on("click", () => alert("clicked"));
+                </script>
+            </div>
+        </div>
+
+        <div class="cont example">
+            <h3>setting window.onload</h3>
+            <pre><code class="language-html">&lt;!-- in head --&gt;
+&lt;script&gt;
+$4(() => {
+    console.log("hello!");
+})
+&lt;/script&gt;</code></pre>
+        </div>
+    </div>
 </body>
 </html>
