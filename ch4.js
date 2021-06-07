@@ -15,7 +15,8 @@ class CHElement {
     static fromSelector(selector, parent) {
         const query = parent.querySelectorAll(selector);
         if (query.length === 1) return new CHElement(query[0]);
-        return Array.from(query, e => new CHElement(e));
+        const result = Array.from(query, e => new CHElement(e));
+        result.a = result;
     }
 
     /**
@@ -27,6 +28,7 @@ class CHElement {
             throw new TypeError("`" + e + "`: object not an Element, Node or Window")
         this.e = e;
         this._eventListeners = {};
+        this.a = [this];
     }
 
     /**

@@ -5,10 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta property="og:title" content="ch4.js">
+    <meta property="og:description" content="another js framework by yours truly">
+    <meta property="og:site_name" content="chfour.github.io/chfourjs/">
+    <meta property="og:image" content="/chfourjs/logo.png">
+    <meta name="theme-color" content="#896ac1">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
 
     <style>
+        :root {
+            --accent: #896ac1;
+        }
         body {
             background-color: #1d1d1d;
             color: white;
@@ -17,7 +26,7 @@
         h2::before {
             content: "* ";
             font-size: 0.8em;
-            color: rgb(189, 184, 255);
+            color: var(--accent);
         }
         #examples {
             width: max-content;
@@ -35,7 +44,7 @@
     <script>
     $4(() => {
         // wack
-        $4(".example").forEach(e => {
+        $4(".copyresult").a.forEach(e => {
             const codeRaw = e.find(".result").html;
             if (!codeRaw) return;
             const code = codeRaw.trim().split("\n").map(a => a.trim()).join("\n");
@@ -49,7 +58,7 @@
 <body>
     <noscript>hey there! you need javascript to view this page!</noscript>
 
-    <h1>ch4.js - another "joke" js framework</h1>
+    <h1><span style="color: #896ac1;">ch4.js</span> - another "joke" js framework</h1>
     <p><del>you don't want to</del> don't use this in any production code.</p>
 
     <hr>
@@ -57,7 +66,7 @@
     <div id="examples">
         <h2>features demo</h2>
 
-        <div class="cont example">
+        <div class="cont copyresult">
             <h3>attaching event listeners to elements</h3>
             <pre><code class="language-html">loading example</code></pre>
 
@@ -71,7 +80,7 @@
             </div>
         </div>
 
-        <div class="cont example">
+        <div class="cont">
             <h3>setting window.onload</h3>
             <pre><code class="language-html">&lt;!-- in head --&gt;
 &lt;script&gt;
@@ -79,6 +88,24 @@ $4(() => {
     console.log("hello!");
 })
 &lt;/script&gt;</code></pre>
+        </div>
+
+        <div class="cont">
+            <h3>setting and getting innerText and innerHTML</h3>
+            <pre><code class="language-html">#testspan1: &lt;span id="testspan1"&gt;hello &lt;b&gt;world&lt;/b&gt;!&lt;/span&gt; &lt;br&gt;
+#testspan2: &lt;span id="testspan2"&gt;&lt;/span&gt;
+&lt;script&gt;
+$4("#testspan2").text = $4("#testspan1").html;
+&lt;/script&gt;</code></pre>
+
+            <p>result:</p>
+            <div class="result">
+                #testspan1: <span id="testspan1">hello <b>world</b>!</span> <br>
+                #testspan2: <span id="testspan2"></span>
+                <script>
+                    $4("#testspan2").text = $4("#testspan1").html;
+                </script>
+            </div>
         </div>
     </div>
 </body>
