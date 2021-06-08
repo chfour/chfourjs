@@ -21,6 +21,13 @@ class CHElement {
     }
 
     /**
+     * create a new element
+     * @param {String} tagName tag name of new element
+     * @returns the created element
+     */
+    static new(tagName) { return new CHElement(document.createElement(tagName)); }
+
+    /**
      * create an element class from an element
      * @param {Element | Node | Window} e the element
      */
@@ -112,6 +119,37 @@ class CHElement {
      * @param {CHElement} element the element to append
      */
     append(element) { this.e.appendChild(element.e); }
+
+    /**
+     * get the last child node
+     */
+    get last() { return new CHElement(this.e.lastChild); }
+
+    /**
+     * get the first child node
+     */
+    get first() { return new CHElement(this.e.firstChild); }
+
+    /**
+     * remove a child node
+     * @param {CHElement} child the child to remove
+     */
+    rm(child) { this.e.removeChild(child.e); }
+
+    /**
+     * remove the last child node
+     */
+    rmLast() { if(this.e.firstChild) this.e.removeChild(this.e.lastChild); }
+
+    /**
+     * remove the first child node (could be slower than `rmLast()`)
+     */
+    rmFirst() { if(this.e.firstChild) this.e.removeChild(this.e.firstChild); }
+
+    /**
+     * remove all child nodes
+     */
+    rmAll() { while(this.e.firstChild) this.e.removeChild(this.e.lastChild); }
 }
 
 /**
@@ -132,3 +170,5 @@ function $4(a) {
             else throw new TypeError("`" + e + "`: object not an instance of Element, Node or Window");
     }
 }
+
+$4.new = CHElement.new;

@@ -78,8 +78,8 @@
             <div class="result">
                 <button id="testbutton">click me</button>
                 <script>
-                    const b = $4("#testbutton");
-                    b.on("click", () => alert("clicked"));
+                const b = $4("#testbutton");
+                b.on("click", () => alert("clicked"));
                 </script>
             </div>
         </div>
@@ -99,7 +99,7 @@ $4(() => {
             <pre><code class="language-html">#testspan1: &lt;span id="testspan1"&gt;hello &lt;b&gt;world&lt;/b&gt;!&lt;/span&gt; &lt;br&gt;
 #testspan2: &lt;span id="testspan2"&gt;&lt;/span&gt;
 &lt;script&gt;
-    $4("#testspan2").text = $4("#testspan1").html;
+$4("#testspan2").text = $4("#testspan1").html;
 &lt;/script&gt;</code></pre>
 
             <p>result:</p>
@@ -121,10 +121,10 @@ $4(() => {
     &lt;span class=&quot;myclass&quot;&gt;blue&lt;/span&gt;
 &lt;/p&gt;
 &lt;script&gt;
-    const myElement = $4(&quot;#testp1&quot;);
-    myElement.find(&quot;span&quot;)[0].css({color: &quot;red&quot;});
-    myElement.find(&quot;span&quot;)[1].css({color: &quot;green&quot;});
-    myElement.find(&quot;span.myclass&quot;).css({color: &quot;blue&quot;});
+const myElement = $4(&quot;#testp1&quot;);
+myElement.find(&quot;span&quot;)[0].css({color: &quot;red&quot;});
+myElement.find(&quot;span&quot;)[1].css({color: &quot;green&quot;});
+myElement.find(&quot;span.myclass&quot;).css({color: &quot;blue&quot;});
 &lt;/script&gt;</code></pre>
 
             <p>result:</p>
@@ -140,6 +140,33 @@ $4(() => {
                     myElement.find("span")[0].css({color: "red"});
                     myElement.find("span")[1].css({color: "green"});
                     myElement.find("span.myclass").css({color: "blue"});
+                </script>
+            </div>
+        </div>
+
+        <div class="cont copyresult">
+            <h3>creating new elements and appending them and also other stuff</h3>
+            <pre><code class="language-html"></code></pre>
+
+            <p>result:</p>
+            <div class="result">
+                <button id="listadd">add</button>
+                <button id="listremovefirst">remove first</button>
+                <button id="listremovelast">remove last</button>
+                <button id="listclear">remove all</button>
+                <ul id="mylist">
+                    <li>this is a list</li>
+                </ul>
+                <script>
+                let counter = 1;
+                $4("#listadd").on("click", () => {
+                    const newEntry = $4.new("li");
+                    newEntry.text = `hello! ${counter++}`;
+                    $4("#mylist").append(newEntry);
+                })
+                $4("#listremovefirst").on("click", () => $4("#mylist").rmFirst());
+                $4("#listremovelast").on("click", () => $4("#mylist").rmLast());
+                $4("#listclear").on("click", () => $4("#mylist").rmAll());
                 </script>
             </div>
         </div>
