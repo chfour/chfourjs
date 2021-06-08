@@ -105,9 +105,13 @@ class CHElement {
      * set inline css properties
      * @param {Object} props the properties as an object
      */
-    css(props) {
-        Object.assign(this.e.style, props);
-    }
+    css(props) { Object.assign(this.e.style, props); }
+
+    /**
+     * append a child node to the element
+     * @param {CHElement} element the element to append
+     */
+    append(element) { this.e.appendChild(element.e); }
 }
 
 /**

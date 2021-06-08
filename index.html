@@ -42,14 +42,16 @@
 
     <script src="ch4.js"></script>
     <script>
+    function dedent(text) {
+        const lines = text.split("\n").filter(l => l.trim().length > 0);
+        // uhhhh
+        const minIndent = Math.min.apply(this, lines.map(l => l.match(/^\s+/)?.[0].length || 0).filter(l => l > 0));
+        const stripRegex = new RegExp(`^\\s{${minIndent}}`, "gm");
+        return lines.map(l => l.replace(stripRegex, "")).join("\n");
+    }
     $4(() => {
         // wack
-        $4(".copyresult").a.forEach(e => {
-            const codeRaw = e.find(".result").html;
-            if (!codeRaw) return;
-            const code = codeRaw.trim().split("\n").map(a => a.trim()).join("\n");
-            e.find("code").text = code;
-        });
+        $4(".copyresult").a.forEach(e => e.find("code").text = dedent(e.find(".result").html));
         hljs.highlightAll();
     })
     </script>
@@ -97,7 +99,7 @@ $4(() => {
             <pre><code class="language-html">#testspan1: &lt;span id="testspan1"&gt;hello &lt;b&gt;world&lt;/b&gt;!&lt;/span&gt; &lt;br&gt;
 #testspan2: &lt;span id="testspan2"&gt;&lt;/span&gt;
 &lt;script&gt;
-$4("#testspan2").text = $4("#testspan1").html;
+    $4("#testspan2").text = $4("#testspan1").html;
 &lt;/script&gt;</code></pre>
 
             <p>result:</p>
@@ -119,10 +121,10 @@ $4("#testspan2").text = $4("#testspan1").html;
     &lt;span class=&quot;myclass&quot;&gt;blue&lt;/span&gt;
 &lt;/p&gt;
 &lt;script&gt;
-const myElement = $4(&quot;#testp1&quot;);
-myElement.find(&quot;span&quot;)[0].css({color: &quot;red&quot;});
-myElement.find(&quot;span&quot;)[1].css({color: &quot;green&quot;});
-myElement.find(&quot;span.myclass&quot;).css({color: &quot;blue&quot;});
+    const myElement = $4(&quot;#testp1&quot;);
+    myElement.find(&quot;span&quot;)[0].css({color: &quot;red&quot;});
+    myElement.find(&quot;span&quot;)[1].css({color: &quot;green&quot;});
+    myElement.find(&quot;span.myclass&quot;).css({color: &quot;blue&quot;});
 &lt;/script&gt;</code></pre>
 
             <p>result:</p>
