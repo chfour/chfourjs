@@ -17,6 +17,7 @@ class CHElement {
         if (query.length === 1) return new CHElement(query[0]);
         const result = Array.from(query, e => new CHElement(e));
         result.a = result;
+        return result;
     }
 
     /**
@@ -27,6 +28,7 @@ class CHElement {
         if (!(e instanceof Element || e instanceof Node || e instanceof Window))
             throw new TypeError("`" + e + "`: object not an Element, Node or Window")
         this.e = e;
+
         this._eventListeners = {};
         this.a = [this];
     }
@@ -98,6 +100,14 @@ class CHElement {
      * @param {String} text the HTML string
      */
     set html(text) { this.e.innerHTML = text; }
+
+    /**
+     * set inline css properties
+     * @param {Object} props the properties as an object
+     */
+    css(props) {
+        Object.entries(props).forEach(([k, v]) => this.e.style[k] = v);
+    }
 }
 
 /**

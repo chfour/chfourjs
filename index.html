@@ -64,7 +64,7 @@
     <hr>
 
     <div id="examples">
-        <h2>features demo</h2>
+        <h2>features and examples</h2>
 
         <div class="cont copyresult">
             <h3>attaching event listeners to elements</h3>
@@ -82,7 +82,7 @@
 
         <div class="cont">
             <h3>setting window.onload</h3>
-            <pre><code class="language-html">&lt;!-- in head --&gt;
+            <pre><code class="language-html">&lt;!-- in head after including ch4.js --&gt;
 &lt;script&gt;
 $4(() => {
     console.log("hello!");
@@ -104,6 +104,38 @@ $4("#testspan2").text = $4("#testspan1").html;
                 #testspan2: <span id="testspan2"></span>
                 <script>
                     $4("#testspan2").text = $4("#testspan1").html;
+                </script>
+            </div>
+        </div>
+
+        <div class="cont">
+            <h3>finding elements in elements & CSS</h3>
+            <pre><code class="language-html">&lt;p id=&quot;testp1&quot;&gt;
+    test
+    &lt;span&gt;red&lt;/span&gt;
+    &lt;span&gt;green&lt;/span&gt;
+    &lt;span class=&quot;myclass&quot;&gt;blue&lt;/span&gt;
+&lt;/p&gt;
+&lt;script&gt;
+const myElement = $4(&quot;#testp1&quot;);
+myElement.find(&quot;span&quot;)[0].css({color: &quot;red&quot;});
+myElement.find(&quot;span&quot;)[1].css({color: &quot;green&quot;});
+myElement.find(&quot;span.myclass&quot;).css({color: &quot;blue&quot;});
+&lt;/script&gt;</code></pre>
+
+            <p>result:</p>
+            <div class="result">
+                <p id="testp1">
+                    test
+                    <span>red</span>
+                    <span>green</span>
+                    <span class="myclass">blue</span>
+                </p>
+                <script>
+                    const myElement = $4("#testp1");
+                    myElement.find("span")[0].css({color: "red"});
+                    myElement.find("span")[1].css({color: "green"});
+                    myElement.find("span.myclass").css({color: "blue"});
                 </script>
             </div>
         </div>
