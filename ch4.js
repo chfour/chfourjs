@@ -106,7 +106,7 @@ class CHElement {
      * @param {Object} props the properties as an object
      */
     css(props) {
-        Object.entries(props).forEach(([k, v]) => this.e.style[k] = v);
+        Object.assign(this.e.style, props);
     }
 }
 
